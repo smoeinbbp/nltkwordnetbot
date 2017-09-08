@@ -43,7 +43,7 @@ def word(bot, update):
         logger.info("%s said %s" % (user.first_name, update.message.text))
         reply_markup = ReplyKeyboardRemove()
         update.message.reply_text(
-            'Unknown word. Please enter a known word', reply_markup=reply_markup)
+            'Unknown word. Please type a known word', reply_markup=reply_markup)
         return WORD
 
 
@@ -58,7 +58,7 @@ def pos(bot, update):
             logger.info("%s said %s" % (user.first_name, update.message.text))
             reply_markup = ReplyKeyboardMarkup(actionKeyboard, True)
             update.message.reply_text(
-                "What do you want to do?", reply_markup=reply_markup)
+                "What do you want to know?", reply_markup=reply_markup)
             return ACTION
         except:
             logger.info("%s said %s" % (user.first_name, update.message.text))
@@ -75,7 +75,7 @@ def pos(bot, update):
             logger.info("%s said %s" % (user.first_name, update.message.text))
             reply_markup = ReplyKeyboardMarkup(actionKeyboard, True)
             update.message.reply_text(
-                "What do you want to do?", reply_markup=reply_markup)
+                "What do you want to know?", reply_markup=reply_markup)
             return ACTION
         except:
             logger.info("%s said %s" % (user.first_name, update.message.text))
@@ -92,7 +92,7 @@ def pos(bot, update):
             logger.info("%s said %s" % (user.first_name, update.message.text))
             reply_markup = ReplyKeyboardMarkup(actionKeyboard, True)
             update.message.reply_text(
-                "What do you want to do?", reply_markup=reply_markup)
+                "What do you want to know?", reply_markup=reply_markup)
             return ACTION
         except:
             logger.info("%s said %s" % (user.first_name, update.message.text))
@@ -109,7 +109,7 @@ def pos(bot, update):
             logger.info("%s said %s" % (user.first_name, update.message.text))
             reply_markup = ReplyKeyboardMarkup(actionKeyboard, True)
             update.message.reply_text(
-                "What do you want to do?", reply_markup=reply_markup)
+                "What do you want to know?", reply_markup=reply_markup)
             return ACTION
         except:
             logger.info("%s said %s" % (user.first_name, update.message.text))
@@ -126,7 +126,7 @@ def pos(bot, update):
             logger.info("%s said %s" % (user.first_name, update.message.text))
             reply_markup = ReplyKeyboardMarkup(actionKeyboard, True)
             update.message.reply_text(
-                "What do you want to do?", reply_markup=reply_markup)
+                "What do you want to know?", reply_markup=reply_markup)
             return ACTION
         except:
             logger.info("%s said %s" % (user.first_name, update.message.text))
