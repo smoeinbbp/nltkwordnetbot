@@ -1,5 +1,5 @@
 # NLTK Wordnet Bot
-Simple bot for find synonyms, antonyms, definition and examples of a word.
+Simple Telegram bot for find synonyms, antonyms, definition and examples of a word.
 
-# To do
+## To do
 Words Similarity
