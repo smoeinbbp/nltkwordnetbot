@@ -11,11 +11,15 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+TOKEN = "bot-token"
+
 # Define Steps
 WORD, POS, ACTION = range(3)
+
 userWord = ""
 userPos = ""
 userAction = ""
+
 posKeyboard = [['Noun', 'Verb', 'Adjective'],
                ['Adjective-Sattelite', 'Adverb']]
 actionKeyboard = [['Synonym', 'Antonym'], ['Definition', 'Example']]
@@ -208,12 +212,19 @@ def action(bot, update):
                 "There isn't any example for this word.", reply_markup=reply_markup)
             return ACTION
 
-    else:
+    elif update.message.text == "New Word":
         logger.info("%s said %s" % (user.first_name, update.message.text))
         reply_markup = ReplyKeyboardRemove()
         update.message.reply_text(
             "Please type your word.", reply_markup=reply_markup)
         return WORD
+
+    else:
+        logger.info("%s said %s" % (user.first_name, update.message.text))
+        reply_markup = ReplyKeyboardMarkup(custom_keyboard, True)
+        update.message.reply_text(
+            "Please choose from keyboard", reply_markup=reply_markup)
+        return ACTION
 
 
 def anyText(bot, update):
@@ -241,8 +252,7 @@ def error(bot, update, error):
 
 
 def main():
-    updater = Updater("Token")
-
+    updater = Updater(TOKEN)
     dp = updater.dispatcher
 
     conv_handler = ConversationHandler(
@@ -254,23 +264,16 @@ def main():
         },
         fallbacks=[CommandHandler('cancel', cancel)]
     )
+    unknown_handler = MessageHandler(Filters.command, unknown)
+    any_handler = MessageHandler(Filters.text, anyText)
 
     dp.add_handler(conv_handler)
-
-    start_handler = CommandHandler('start', start)
-    dp.add_handler(start_handler)
-
-    unknown_handler = MessageHandler(Filters.command, unknown)
     dp.add_handler(unknown_handler)
-
-    any_handler = MessageHandler(Filters.text, anyText)
     dp.add_handler(any_handler)
-
     dp.add_error_handler(error)
 
     updater.start_polling()
     updater.idle()
-    updater.stop()
 
 
 if __name__ == "__main__":
