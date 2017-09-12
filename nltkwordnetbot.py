@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from nltk.corpus import wordnet as wn
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
 import logging
+try:
+    from nltk.corpus import wordnet as wn
+except:
+    import nltk
+    nltk.download('wordnet')
+    from nltk.corpus import wordnet as wn
+
 
 # Enable logging
 logging.basicConfig(
